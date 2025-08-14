@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Marcas{% endblock %}
+{% block content %}
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <form action="{% url 'brand_list' %}" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control search-input" name="name" placeholder="🔍" value="{{request.GET.name}}">
+        <button type="submit" class="btn btn-success">Buscar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover table-bordered align-middle rounded shadow-sm overflow-hidden">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for brand in brands %}
+      <tr>
+        <td>{{ brand.id }}</td>
+        <td>{{ brand.name }}</td>
+        <td>{{ brand.description }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

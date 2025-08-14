@@ -1,4 +1,4 @@
-<div class="row flex-nowrap">
+<div class="row flex-nowrap mt-4">
   <div class="col-auto px-0 bg-dark">
     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
       <!-- Botão para abrir o menu em mobile -->
@@ -11,7 +11,37 @@
         <ul class="nav flex-column align-items-start" id="menu">
           <li class="nav-item mb-2">
             <a href="#" class="nav-link text-white">
-              <i class="bi bi-grid-fill me-2" style="color:#1DCD9F;"></i> Marcas
+              <i class="bi bi-house me-2" style="color:#1DCD9F;"></i> Home
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="{% url 'brand_list' %}" class="nav-link text-white">
+              <i class="bi bi-grid me-2" style="color:#1DCD9F;"></i> Marcas
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+              <i class="bi bi-tag me-2" style="color:#1DCD9F;"></i> Categoria
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+              <i class="bi bi-door-open me-2" style="color:#1DCD9F;"></i> Entradas
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+              <i class="bi bi-door-closed me-2" style="color:#1DCD9F;"></i> Saidas
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+              <i class="bi bi-bag me-2" style="color:#1DCD9F;"></i> Produtos
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+              <i class="bi bi-truck me-2" style="color:#1DCD9F;"></i> Fornecedores
             </a>
           </li>
         </ul>
