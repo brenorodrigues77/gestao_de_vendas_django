@@ -2,8 +2,17 @@
 {% block title %}Marcas{% endblock %}
 {% block content %}
 
-<div>
-  <h4>aqui ficara a criação das marcas</h4>
+<div class="container mt-2">
+  <h3>Cadastro de Marcas</h3>
+  <div class="card mt-4">
+    <div class="card-body">
+      <form method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
