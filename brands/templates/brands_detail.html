@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-2">
+  <h3>Detalhes da Marca</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">{{ object.name }}</div>
+      <p>{{ object.description }}</p>
+    </div>
+  </div>
+  {% endblock %}
