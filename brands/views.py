@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from brands import models, forms
 
 
@@ -27,3 +27,16 @@ class BrandCreateView(CreateView):
 class BrandDetailView(DetailView):
     model = models.Brand
     template_name = "brands_detail.html"
+
+
+class BrandUpdateView(UpdateView):
+    model = models.Brand
+    form_class = forms.BrandForm
+    template_name = "brands_update.html"
+    success_url = reverse_lazy("brands_list")
+
+
+class BrandDeleteView(DeleteView):
+    model = models.Brand
+    template_name = "brands_delete.html"
+    success_url = reverse_lazy("brands_list")

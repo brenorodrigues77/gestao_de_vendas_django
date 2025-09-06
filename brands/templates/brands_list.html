@@ -27,6 +27,7 @@
         <th scope="col">ID</th>
         <th scope="col">Nome</th>
         <th scope="col">Descrição</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,17 @@
         <td>{{ brand.id }}</td>
         <td>{{ brand.name }}</td>
         <td>{{ brand.description }}</td>
+        <td>
+          <a href="{% url 'brands_detail' brand.id %}" class="btn btn-sm btn-info">
+            <i class="bi bi-search"></i>
+          </a>
+          <a href="{% url 'brands_update' brand.id %}" class="btn btn-sm btn-warning">
+            <i class="bi bi-pencil"></i>
+          </a>
+          <a href="{% url 'brands_delete' brand.id %}" class="btn btn-sm btn-danger">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
