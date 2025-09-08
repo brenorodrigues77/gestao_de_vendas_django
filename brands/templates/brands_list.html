@@ -37,13 +37,16 @@
         <td>{{ brand.name }}</td>
         <td>{{ brand.description }}</td>
         <td>
-          <a href="{% url 'brands_detail' brand.id %}" class="btn btn-sm btn-info">
+          <a href="{% url 'brands_detail' brand.id %}" class="btn btn-sm btn-info" data-toggle="tooltip"
+            data-placement="top" title="Visualizar detalhes da marca">
             <i class="bi bi-search"></i>
           </a>
-          <a href="{% url 'brands_update' brand.id %}" class="btn btn-sm btn-warning">
+          <a href="{% url 'brands_update' brand.id %}" class="btn btn-sm btn-warning" data-toggle="tooltip"
+            data-placement="top" title="Editar Marca">
             <i class="bi bi-pencil"></i>
           </a>
-          <a href="{% url 'brands_delete' brand.id %}" class="btn btn-sm btn-danger">
+          <a href="{% url 'brands_delete' brand.id %}" class="btn btn-sm btn-danger" data-toggle="tooltip"
+            data-placement="top" title="Excluir Marca">
             <i class="bi bi-trash"></i>
           </a>
         </td>
@@ -52,5 +55,7 @@
     </tbody>
   </table>
 </div>
+
+{% include 'components/pagination.html' %}
 
 {% endblock %}
