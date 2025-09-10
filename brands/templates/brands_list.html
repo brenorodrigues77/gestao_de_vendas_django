@@ -21,6 +21,9 @@
 </div>
 
 <div class="table-responsive">
+  {% if not_found %}
+  <div class="alert text-center text-white mt-3">{{ not_found }}</div>
+  {% else %}
   <table class="table table-hover table-bordered align-middle rounded shadow-sm overflow-hidden">
     <thead class="thead-dark">
       <tr>
@@ -54,6 +57,7 @@
       {% endfor %}
     </tbody>
   </table>
+  {% endif %}
 </div>
 
 {% include 'components/pagination.html' %}

@@ -3,24 +3,25 @@
   <ul class="pagination justify-content-center custom-pagination">
     {% if page_obj.has_previous %}
     <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+      <a class="page-link" style="color:#128466; border-color:#128466;"
+        href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
     </li>
     {% endif %}
     {% for page in page_obj.paginator.page_range %}
     {% if page == page_obj.number %}
     <li class="page-item active">
-      <a class="page-link" href="#" style="background-color:#1DCD9F; border-color:#1DCD9F; color:#fff;">{{ page }}</a>
+      <a class="page-link" href="#" style="background-color:#128466; border-color:#128466; color:#fff;">{{ page }}</a>
     </li>
     {% else %}
     <li class="page-item">
-      <a class="page-link" href="?page={{ page }}" style="color:#1DCD9F; border-color:#1DCD9F;">{{ page }}</a>
+      <a class="page-link" href="?page={{ page }}" style="color:#128466; border-color:#128466;">{{ page }}</a>
     </li>
     {% endif %}
     {% endfor %}
     {% if page_obj.has_next %}
     <li class="page-item">
       <a class="page-link" href="?page={{ page_obj.next_page_number }}"
-        style="color:#1DCD9F; border-color:#1DCD9F;">&raquo;</a>
+        style="color:#128466; border-color:#128466;">&raquo;</a>
     </li>
     {% endif %}
   </ul>
