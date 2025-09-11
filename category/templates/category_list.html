@@ -44,10 +44,12 @@
             data-placement="top" title="Visualizar detalhes da marca">
             <i class="bi bi-search"></i>
           </a>
-          <a href="#" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Marca">
+          <a href="{% url 'category_update' categories.id %}" class="btn btn-sm btn-warning" data-toggle="tooltip"
+            data-placement="top" title="Editar Marca">
             <i class="bi bi-pencil"></i>
           </a>
-          <a href="#" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Marca">
+          <a href="{% url 'category_delete' categories.id %}" class="btn btn-sm btn-danger" data-toggle="tooltip"
+            data-placement="top" title="Excluir Marca">
             <i class="bi bi-trash"></i>
           </a>
         </td>
