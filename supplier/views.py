@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from supplier import models
-from django.views.generic import ListView
+from supplier import models, forms
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 
 class SupplierListView(ListView):
@@ -19,3 +19,28 @@ class SupplierListView(ListView):
                 self.extra_context = {"not_found": "Fornecedor nao encontrado"}
 
         return queryset
+
+
+class SupplierCreateView(CreateView):
+    model = models.Supplier
+    template_name = "supplier_create.html"
+    form_class = forms.SupplierForm
+    success_url = reverse_lazy("supplier_list")
+
+
+class SupplierDetailView(DetailView):
+    model = models.Supplier
+    template_name = "supplier_detail.html"
+
+
+class SupplierUpdateView(UpdateView):
+    model = models.Supplier
+    template_name = "supplier_update.html"
+    form_class = forms.SupplierForm
+    success_url = reverse_lazy("supplier_list")
+
+
+class SupplierDeleteView(DeleteView):
+    model = models.Supplier
+    template_name = "supplier_delete.html"
+    success_url = reverse_lazy("supplier_list")

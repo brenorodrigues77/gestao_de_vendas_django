@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-2">
+  <h3>Atualizar Fornecedor</h3>
+  <div class="card mt-4">
+    <div class="card-body">
+      <form method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </form>
+    </div>
+  </div>
+  <a href="{% url 'supplier_list' %}" class="btn btn-secondary mt-4">Cancelar e Voltar para a lista</a>
+</div>
+
+{% endblock %}
