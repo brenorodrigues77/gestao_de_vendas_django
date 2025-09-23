@@ -1,50 +1,112 @@
-<div class="row flex-nowrap mt-4">
-  <div class="col-auto px-0 bg-dark">
-    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
-      <!-- Botão para abrir o menu em mobile -->
-      <button class="btn btn-dark d-block d-sm-none mb-3" type="button" data-bs-toggle="collapse"
-        data-bs-target="#menuCollapse" aria-expanded="false" aria-controls="menuCollapse">
-        <i class="bi bi-grid-fill fs-4" style="color:#1DCD9F;"></i>
-      </button>
-      <!-- Menu colapsável -->
-      <div class="collapse d-sm-block" id="menuCollapse">
-        <ul class="nav flex-column align-items-start" id="menu">
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
-              <i class="bi bi-house me-2" style="color:#1DCD9F;"></i> Home
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="{% url 'brands_list' %}" class="nav-link text-white">
-              <i class="bi bi-grid me-2" style="color:#1DCD9F;"></i> Marcas
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="{% url 'category_list' %}" class="nav-link text-white">
-              <i class="bi bi-tag me-2" style="color:#1DCD9F;"></i> Categoria
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
-              <i class="bi bi-door-open me-2" style="color:#1DCD9F;"></i> Entradas
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
-              <i class="bi bi-door-closed me-2" style="color:#1DCD9F;"></i> Saidas
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
-              <i class="bi bi-bag me-2" style="color:#1DCD9F;"></i> Produtos
-            </a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="{% url 'supplier_list' %}" class="nav-link text-white">
-              <i class="bi bi-truck me-2" style="color:#1DCD9F;"></i> Fornecedores
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+<style>
+  .sidebar-fixed {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    height: calc(100vh - 64px);
+    width: 220px;
+    z-index: 1040;
+    background: #212529;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: width 0.2s;
+  }
+
+  .sidebar-fixed .nav-link {
+    white-space: nowrap;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sidebar-fixed .nav-link:hover {
+    color: #1DCD9F !important;
+    background: rgba(29, 205, 159, 0.1);
+    border-radius: 2rem !important;
+    transition: background 0.2s, color 0.2s, border-radius 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-fixed {
+      width: 60px !important;
+    }
+
+    .sidebar-fixed .nav-link span {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .sidebar-fixed {
+      top: 56px !important;
+      /* Altura do header em mobile */
+      height: 56px !important;
+      width: 100vw !important;
+      left: 0;
+      z-index: 1040;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-fixed .d-flex {
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 56px !important;
+    }
+
+    .sidebar-fixed ul {
+      flex-direction: row !important;
+      width: 100vw !important;
+    }
+
+    .sidebar-fixed .nav-link span {
+      display: none !important;
+    }
+  }
+</style>
+
+<div class="sidebar-fixed" id="sidebar">
+  <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white h-100">
+    <ul class="nav flex-column align-items-start w-100" id="menu">
+      <li class="nav-item mb-2">
+        <a href="#" class="nav-link text-white">
+          <i class="bi bi-house" style="color:#1DCD9F;"></i> <span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="{% url 'brands_list' %}" class="nav-link text-white">
+          <i class="bi bi-grid" style="color:#1DCD9F;"></i> <span>Marcas</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="{% url 'category_list' %}" class="nav-link text-white">
+          <i class="bi bi-tag" style="color:#1DCD9F;"></i> <span>Categoria</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="#" class="nav-link text-white">
+          <i class="bi bi-door-open" style="color:#1DCD9F;"></i> <span>Entradas</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="#" class="nav-link text-white">
+          <i class="bi bi-door-closed" style="color:#1DCD9F;"></i> <span>Saidas</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="#" class="nav-link text-white">
+          <i class="bi bi-bag" style="color:#1DCD9F;"></i> <span>Produtos</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="{% url 'supplier_list' %}" class="nav-link text-white">
+          <i class="bi bi-truck" style="color:#1DCD9F;"></i> <span>Fornecedores</span>
+        </a>
+      </li>
+    </ul>
   </div>
+</div>

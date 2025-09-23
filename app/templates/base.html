@@ -11,21 +11,73 @@
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
   <title>{% block title %}{% endblock %}</title>
+  <style>
+    @media (max-width: 768px) {
+      .sidebar-fixed {
+        width: 60px !important;
+      }
+
+      .main-content {
+        margin-left: 60px !important;
+        padding-top: 56px !important;
+      }
+
+      header {
+        height: 56px;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .main-content {
+        margin-left: 0 !important;
+        padding-top: 56px !important;
+      }
+
+      .sidebar-fixed {
+        left: 0;
+        width: 100vw !important;
+        height: 56px !important;
+        top: 0;
+        z-index: 1040;
+      }
+
+      .sidebar-fixed .d-flex {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 56px !important;
+      }
+
+      .sidebar-fixed ul {
+        flex-direction: row !important;
+        width: 100vw !important;
+      }
+
+      .sidebar-fixed .nav-link span {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  {% include 'components/header.html' %}
-  <div class="container-fluid flex-grow-1">
+  <header style="position:fixed; top:0; left:0; width:100%; z-index:1050;">
+    {% include 'components/header.html' %}
+  </header>
+  <div class="d-flex" style="min-height: 100vh; padding-top:64px;">
     {% include 'components/sidebar.html' %}
-    <div class="col py-3">
-      <div class="container">
-        <main>
-          {% block content %}
-          {% endblock %}
-        </main>
-      </div>
+    <div class="flex-grow-1 main-content" style="margin-left:220px;">
+      <main class="container-fluid py-3" style="max-width: 1200px; margin: 0 auto;">
+        {% block content %}
+        {% endblock %}
+      </main>
     </div>
-  </div>
   </div>
   {% include 'components/footer.html' %}
 </body>
