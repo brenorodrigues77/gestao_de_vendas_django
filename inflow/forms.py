@@ -10,17 +10,11 @@ class InflowForm(forms.ModelForm):
             "product": forms.Select(attrs={"class": "form-control"}),
             "supplier": forms.Select(attrs={"class": "form-control"}),
             "quantity": forms.NumberInput(attrs={"class": "form-control"}),
-            "description": forms.Textarea(attrs={"class": "form-control"}),
+            "description": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
         }
         labels = {
             "product": "Produto",
             "supplier": "Fornecedor",
             "quantity": "Quantidade",
             "description": "Descrição",
-        }
-        help_texts = {
-            "product": "Selecione o produto que está entrando no estoque.",
-            "supplier": "Selecione o fornecedor do produto.",
-            "quantity": "Informe a quantidade do produto.",
-            "description": "Adicione uma descrição para o produto.",
         }

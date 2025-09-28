@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path("inflow/list", views.InflowListView.as_view(), name="inflow_list"),
+    path("inflow/create", views.InflowCreateView.as_view(), name="inflow_create"),
 ]

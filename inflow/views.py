@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
+from inflow import forms
 from .models import Inflow
 
 
@@ -21,14 +22,14 @@ class InflowListView(ListView):
         return queryset
 
 
-# class InflowCreateView(CreateView):
-#     model = Inflow
-#     template_name = "inflow/inflow_form.html"
-#     fields = ['product', 'supplier', 'quantity', 'description']
-#     success_url = reverse_lazy("inflow_list")
+class InflowCreateView(CreateView):
+    model = Inflow
+    template_name = "inflow_create.html"
+    form_class = forms.InflowForm
+    success_url = reverse_lazy("inflow_list")
 
 
-# class InflowDetailView(DetailView):
-#     model = Inflow
-#     template_name = "inflow_detail.html"
-#     context_object_name = "inflow"
+class InflowDetailView(DetailView):
+    model = Inflow
+    template_name = "inflow_detail.html"
+    context_object_name = "inflow"

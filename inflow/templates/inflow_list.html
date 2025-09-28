@@ -13,7 +13,7 @@
   </div>
 
   <div class="col-md-6 text-end">
-    <a href="#" class="btn btn-success">
+    <a href="{% url 'inflow_create' %}" class="btn btn-success">
       <i class="bi bi-plus me-1"></i>
       Cadastrar Entrada
     </a>
@@ -34,21 +34,15 @@
       </tr>
     </thead>
     <tbody>
-      {% for brand in brands %}
+      {% for inflow in inflows %}
       <tr>
-        <td>{{ brand.id }}</td>
-        <td>{{ brand.name }}</td>
-        <td>{{ brand.description }}</td>
+        <td>{{ inflow.id }}</td>
+        <td>{{ inflow.product.name }}</td>
+        <td>{{ inflow.description }}</td>
         <td>
-          <a href="#" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
-            title="Visualizar detalhes da marca">
+          <a href="{% url 'inflow_detail' inflow.id %}" class="btn btn-sm btn-info" data-toggle="tooltip"
+            data-placement="top" title="Visualizar detalhes da marca">
             <i class="bi bi-search"></i>
-          </a>
-          <a href="#" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Marca">
-            <i class="bi bi-pencil"></i>
-          </a>
-          <a href="#" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir Marca">
-            <i class="bi bi-trash"></i>
           </a>
         </td>
       </tr>
