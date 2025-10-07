@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Entradas{% endblock %}
+{% block title %}Saidas{% endblock %}
 {% block content %}
 
 <div class="row mb-3">
   <div class="col-md-6">
-    <form action="{% url 'inflow_list' %}" method="get">
+    <form action="{% url 'outflow_list' %}" method="get">
       <div class="input-group">
         <input type="text" class="form-control search-input" name="product" placeholder="🔍"
           value="{{request.GET.product}}">
@@ -15,9 +15,9 @@
   </div>
 
   <div class="col-md-6 text-end">
-    <a href="{% url 'inflow_create' %}" class="btn btn-success">
+    <a href="{% url 'outflow_create' %}" class="btn btn-success">
       <i class="bi bi-plus me-1"></i>
-      Cadastrar Entrada
+      Cadastrar Saída
     </a>
   </div>
 </div>
@@ -32,22 +32,20 @@
         <th scope="col">ID</th>
         <th scope="col">Produto</th>
         <th scope="col">Quantidade</th>
-        <th scope="col">Fornecedor</th>
-        <th scope="col">Data de Entrada</th>
+        <th scope="col">Data de Saída</th>
         <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
-      {% for inflow in inflows %}
+      {% for outflow in outflows %}
       <tr>
-        <td>{{ inflow.id }}</td>
-        <td>{{ inflow.product }}</td>
-        <td>{{ inflow.quantity }}</td>
-        <td>{{ inflow.supplier }}</td>
-        <td>{{ inflow.created_at }}</td>
+        <td>{{ outflow.id }}</td>
+        <td>{{ outflow.product }}</td>
+        <td>{{ outflow.quantity }}</td>
+        <td>{{ outflow.created_at }}</td>
         <td>
-          <a href="{% url 'inflow_detail' inflow.id %}" class="btn btn-sm btn-info" data-toggle="tooltip"
-            data-placement="top" title="Visualizar detalhes da marca">
+          <a href="{% url 'outflow_detail' outflow.id %}" class="btn btn-sm btn-info" data-toggle="tooltip"
+            data-placement="top" title="Visualizar detalhes da saída">
             <i class="bi bi-search"></i>
           </a>
         </td>

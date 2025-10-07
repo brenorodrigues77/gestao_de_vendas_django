@@ -8,5 +8,5 @@ urlpatterns = [
     path("", include("supplier.urls")),
     # path("", include("product.urls")),
     path("", include("inflow.urls")),
-    # path("", include("outflow.urls")),
+    path("", include("outflow.urls")),
 ]

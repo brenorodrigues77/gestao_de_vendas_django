@@ -3,9 +3,8 @@ from outflow import models
 
 
 class OutflowAdmin(admin.ModelAdmin):
-    list_display = ('product', 'quantity', 'description', 'date')
-    search_fields = ('product__name', 'description')
-    list_filter = ('date',)
+    list_display = ('product',)
+    search_fields = ('product__name', 'description',)
 
 
 admin.site.site_header = "Administração de Saída de Vendas"
