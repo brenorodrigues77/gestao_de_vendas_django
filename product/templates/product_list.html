@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Produtos{% endblock %}
+{% block content %}
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <form action="{% url 'product_list' %}" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control search-input" name="name" placeholder="🔍" value="{{request.GET.name}}">
+        <button type="submit" class="btn btn-success">Buscar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-6 text-end">
+    <a href="#" class="btn btn-success">
+      <i class="bi bi-plus me-1"></i>
+      Cadastrar produto
+    </a>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <form method="get" action="{% url 'product_list' %}">
+      <div class="input-group">
+        <select class="form-select" name="category">
+        </select>
+        <select class="form-select" name="brand">
+        </select>
+        <button type="submit" class="btn btn-success bi bi-filter"> Filtrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class=" table-responsive">
+  {% if not_found %}
+  <div class="alert text-center text-white mt-3">{{ not_found }}</div>
+  {% else %}
+  <table class="table table-hover table-bordered align-middle rounded shadow-sm overflow-hidden">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Preço de Custo</th>
+        <th scope="col">Preço de Venda</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for products in product %}
+      <tr>
+        <td>{{ products.id }}</td>
+        <td>{{ products.name }}</td>
+        <td>{{ products.brand }}</td>
+        <td>{{ products.category }}</td>
+        <td>R$ {{ products.cost_price }}</td>
+        <td>R$ {{ products.selling_price }}</td>
+        <td>{{ products.quantity }}</td>
+        <td>
+          <a href="{% url 'product_detail' products.id %}" class="btn btn-sm btn-info" data-toggle="tooltip"
+            data-placement="top" title="Visualizar detalhes da produto">
+            <i class="bi bi-search"></i>
+          </a>
+          <a href="{% url 'product_update' products.id %}" class="btn btn-sm btn-warning" data-toggle="tooltip"
+            data-placement="top" title="Editar produto">
+            <i class="bi bi-pencil"></i>
+          </a>
+          <a href="{% url 'product_delete' products.id %}" class="btn btn-sm btn-danger" data-toggle="tooltip"
+            data-placement="top" title="Excluir produto">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+
+{% include 'components/pagination.html' %}
+
+{% endblock %}
