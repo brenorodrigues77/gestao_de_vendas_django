@@ -13,7 +13,7 @@
   </div>
 
   <div class="col-md-6 text-end">
-    <a href="#" class="btn btn-success">
+    <a href="{% url 'product_create' %}" class="btn btn-success">
       <i class="bi bi-plus me-1"></i>
       Cadastrar produto
     </a>
@@ -23,13 +23,23 @@
 <div class="row mb-3">
   <div class="col-md-6">
     <form method="get" action="{% url 'product_list' %}">
+
       <div class="input-group">
         <select class="form-select" name="category">
+          <option value="" {% if not request.GET.category %} selected {% endif %}>Todas as categorias</option>
+          {% for categories in category %}
+          <option> {{categories.name}} </option>
+          {% endfor%}
         </select>
         <select class="form-select" name="brand">
+          <option value="" {% if not request.GET.brand %} selected {% endif %}>Todas as marcas</option>
+          {% for brands in brands %}
+          <option> {{brands.name}} </option>
+          {% endfor %}
         </select>
         <button type="submit" class="btn btn-success bi bi-filter"> Filtrar</button>
       </div>
+
     </form>
   </div>
 </div>

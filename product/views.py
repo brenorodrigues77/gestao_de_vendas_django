@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from product import models, forms
+from category.models import Category
+from brands.models import Brand
 
 
 class ProductListView(ListView):
@@ -19,6 +21,12 @@ class ProductListView(ListView):
                 self.extra_context = {"not_found": "Produto não encontrado"}
 
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = models.Category.objects.all()
+        context["brands"] = models.Brand.objects.all()
+        return context
 
 
 class ProductCreateView(CreateView):
