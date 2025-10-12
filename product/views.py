@@ -14,11 +14,23 @@ class ProductListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         name = self.request.GET.get("name")
+        category = self.request.GET.get("category")
+        brand = self.request.GET.get("brand")
 
         if name:
             queryset = queryset.filter(name__icontains=name)
             if not queryset.exists():
                 self.extra_context = {"not_found": "Produto não encontrado"}
+                
+        if category:
+            queryset = queryset.filter(category_id=category)
+            if not queryset.exists():
+                self.extra_context = {"not_found": "Categoria não encontrada"}
+
+        if brand:
+            queryset = queryset.filter(brand_id=brand)
+            if not queryset.exists():
+                self.extra_context = {"not_found": "Marca não encontrada"}
 
         return queryset
 
