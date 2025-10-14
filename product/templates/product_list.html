@@ -6,7 +6,8 @@
 	<div class="col-md-6">
 		<form action="{% url 'product_list' %}" method="get">
 			<div class="input-group">
-				<input type="text" class="form-control search-input" name="name" placeholder="🔍" value="{{request.GET.name}}">
+				<input type="text" class="form-control search-input" name="name" placeholder="Nome do produto" value="{{request.GET.name}}">
+				<input type="text" class="form-control search-input" name="serie_number" placeholder="Número de série" value="{{request.GET.serie_number}}">
 				<button type="submit" class="btn btn-success">Buscar</button>
 			</div>
 		</form>
@@ -60,6 +61,7 @@
 				<th scope="col">Nome</th>
 				<th scope="col">Marca</th>
 				<th scope="col">Categoria</th>
+				<th scope="col">Número de Série</th>
 				<th scope="col">Preço de Custo</th>
 				<th scope="col">Preço de Venda</th>
 				<th scope="col">Quantidade</th>
@@ -73,6 +75,7 @@
 				<td>{{ products.name }}</td>
 				<td>{{ products.brand }}</td>
 				<td>{{ products.category }}</td>
+				<td>{{ products.serie_number }}</td>
 				<td>R$ {{ products.cost_price }}</td>
 				<td>R$ {{ products.selling_price }}</td>
 				<td>{{ products.quantity }}</td>
