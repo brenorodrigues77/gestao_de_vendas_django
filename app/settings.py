@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "product",
     "inflow",
     "outflow",
+    "dashboard",
 ]
 
 MIDDLEWARE = [
