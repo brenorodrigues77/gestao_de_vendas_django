@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from product import models, forms
 from category.models import Category
 from brands.models import Brand
+from dashboard import metrics
 
 
 class ProductListView(ListView):
@@ -42,6 +43,7 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["product_metrics"] = metrics.get_product_metrics()
         context["category"] = models.Category.objects.all()
         context["brands"] = models.Brand.objects.all()
         return context

@@ -2,7 +2,9 @@
 {% block title %}Produtos{% endblock %}
 {% block content %}
 
-<div class="row mb-3">
+{% include "product_metrics.html" %}
+
+<div class="row mb-3 mt-5">
 	<div class="col-md-6">
 		<form action="{% url 'product_list' %}" method="get">
 			<div class="input-group">
