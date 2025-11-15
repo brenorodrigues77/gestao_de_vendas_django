@@ -1,4 +1,5 @@
 from django.utils.formats import number_format
+from django.db.models import Sum
 from product.models import Product
 from outflow.models import Outflow
   
@@ -21,11 +22,15 @@ def get_product_metrics():
     )
 
 def get_sales_metrics():
+
     total_sales = Outflow.objects.count()
+    total_products_sold = Outflow.objects.aggregate(total_quantity_sold=Sum('quantity'))['total_quantity_sold'] or 0
+    total_sales_value = sum(outflow.quantity * outflow.product.selling_price for outflow in Outflow.objects.all())
+    total_sales_profit = sum(outflow.quantity * (outflow.product.selling_price - outflow.product.cost_price) for outflow in Outflow.objects.all())
 
     return dict(
-       products_sold=0,
-       total_sales_value=0,
+       products_sold=total_products_sold,
+       total_sales_value=total_sales_value,
        total_sales=total_sales,
-       total_sales_profit=0
+       total_sales_profit=total_sales_profit
     )

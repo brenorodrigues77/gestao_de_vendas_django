@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
+
+from dashboard.metrics import get_sales_metrics
 from .models import Outflow
 from outflow import forms
 
@@ -20,6 +22,11 @@ class OutflowListView(ListView):
                 self.extra_context = {"not_found": "Saída não encontrada"}
 
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["sales_metrics"] = get_sales_metrics()
+        return context
 
 
 class OutflowCreateView(CreateView):
