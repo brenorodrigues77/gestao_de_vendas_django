@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 
+{% block title %} Gestão de Vendas {% endblock %}
+
 {% block content %}
 {% include "product_metrics.html" %}
 {% include "sales_metrics.html" %}
+
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-6 text-center">
+        <h5 class="text-center mb-3">Valor das Vendas (7 dias)</h5>
+    </div>
+
+    <div class="col-md-6 text-center">
+        <h5 class="text-center mb-3">Quantidade de vendas diarias</h5>
+    </div>
+</div>
+
 {% endblock %}
