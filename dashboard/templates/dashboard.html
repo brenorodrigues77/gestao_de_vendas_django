@@ -6,7 +6,6 @@
 {% include "product_metrics.html" %}
 {% include "sales_metrics.html" %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="row mt-4 justify-content-center">
     <div class="col-md-6 text-center">
@@ -21,17 +20,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var salesValueDate = JSON.parse('{{ sales_value_dates|safe }}');
-            var dailySalesQuantityDate = JSON.parse('{{ daily_sales_quantity_dates|safe }}');
+            var salesValueData = JSON.parse('{{ sales_value_data|safe }}');
+            // var dailySalesQuantityData = JSON.parse('{{ daily_sales_quantity_data|safe }}');
 
             var salesValueCtx = document.getElementById('salesValueChart').getContext('2d');
             var salesValueChart = new Chart(salesValueCtx, {
                 type: 'line',
                 data: {
-                    labels: salesValueDate.dates,
+                    labels: salesValueData.dates,
                     datasets: [{
                         label: 'Valor das Vendas',
-                        data: salesValueDate.values,
+                        data: salesValueData.values,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1,
@@ -47,28 +46,28 @@
                 }
             });
             
-            var dailySalesQuantityCtx = document.getElementById('dailySalesQuantityChart').getContext('2d');
-            var dailySalesQuantityChart = new Chart(dailySalesQuantityCtx, {
-                type: 'line',
-                data: {
-                    labels: dailySalesQuantityDate.dates,
-                    datasets: [{
-                        label: 'Quantidade de Vendas Diárias',
-                        data: dailySalesQuantityDate.values,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1,
-                        fill: true,
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+            // var dailySalesQuantityCtx = document.getElementById('dailySalesQuantityChart').getContext('2d');
+            // var dailySalesQuantityChart = new Chart(dailySalesQuantityCtx, {
+            //     type: 'line',
+            //     data: {
+            //         labels: dailySalesQuantityData.dates,
+            //         datasets: [{
+            //             label: 'Quantidade de Vendas Diárias',
+            //             data: dailySalesQuantityData.values,
+            //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            //             borderColor: 'rgba(255, 99, 132, 1)',
+            //             borderWidth: 1,
+            //             fill: true,
+            //         }]
+            //     },
+            //     options: {
+            //         scales: {
+            //             y: {
+            //                 beginAtZero: true
+            //             }
+            //         }
+            //     }
+            // });
         });
     </script>
 </div>
