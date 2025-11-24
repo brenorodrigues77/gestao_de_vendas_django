@@ -49,3 +49,14 @@ def get_sales_value_data():
         values.append(float(sales_total))
 
     return dict(dates=dates, values=values)
+
+def get_daily_sales_quantity_data():
+    today = timezone.now().date()
+    dates = [str(today - timezone.timedelta(days=i)) for i in range(6, -1, -1)]
+    quantities = list()
+
+    for date in dates:
+        total_quantity = Outflow.objects.filter(created_at__date=date).count()
+        quantities.append(total_quantity)
+
+    return dict(dates=dates, values=quantities)
