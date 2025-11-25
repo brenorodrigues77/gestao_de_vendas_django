@@ -75,4 +75,132 @@
     </script>
 </div>
 
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-6 text-center">
+        <h5 class="mb-3">Produtos por categoria</h5>
+        <div class="mb-4"></div>
+        <div class="embed-responsive embed-responsive-1by1" style="width: 400px; display: inline-block;">
+            <canvas id="productsByCategoryChart" class="embed-responsive-item"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-6 text-center">
+        <h5 class="mb-3">Produtos por marca</h5>
+        <div class="mb-4"></div>
+        <div style="width: 400px; display: inline-block;">
+            <canvas id="productsByBrandChart" class="embed-responsive-item"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var productsByCategoryData = JSON.parse('{{ products_by_category_data|safe }}');
+            var productsByBrandData = JSON.parse('{{ products_by_brand_data|safe }}');
+
+            // Paleta personalizada e moderna
+            const customColors = [
+                '#1DCD9F', '#0e7c60', '#36A2EB', '#FFCE56', '#9966FF', '#FF6384', '#FF9F40', '#4BC0C0'
+            ];
+
+            // Produtos por Categoria
+            var productsByCategoryCtx = document.getElementById('productsByCategoryChart').getContext('2d');
+            var productsByCategoryChart = new Chart(productsByCategoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(productsByCategoryData),
+                    datasets: [{
+                        label: 'Produtos por Categoria',
+                        data: Object.values(productsByCategoryData),
+                        backgroundColor: customColors,
+                        borderColor: '#fff',
+                        borderWidth: 3,
+                        hoverOffset: 16,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                color: '#0e7c60',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    let value = context.parsed || 0;
+                                    return `${label}: ${value} produtos`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%',
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
+                    }
+                }
+            });
+
+            // Produtos por Marca
+            var productsByBrandCtx = document.getElementById('productsByBrandChart').getContext('2d');
+            var productsByBrandChart = new Chart(productsByBrandCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(productsByBrandData),
+                    datasets: [{
+                        label: 'Produtos por Marca',
+                        data: Object.values(productsByBrandData),
+                        backgroundColor: customColors,
+                        borderColor: '#fff',
+                        borderWidth: 3,
+                        hoverOffset: 16,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                color: '#0e7c60',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    let value = context.parsed || 0;
+                                    return `${label}: ${value} produtos`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%',
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
+                    }
+                }
+            });
+        });
+    </script>
+</div>
+
 {% endblock %}

@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.db.models import Sum, F
 from product.models import Product
 from outflow.models import Outflow
+from category.models import Category
+from brands.models import Brand
+
   
 def get_product_metrics():
     products = Product.objects.all()
@@ -60,3 +63,12 @@ def get_daily_sales_quantity_data():
         quantities.append(total_quantity)
 
     return dict(dates=dates, values=quantities)
+
+
+def get_products_by_category_data():
+    categories = Category.objects.all()
+    return {category.name: Product.objects.filter(category=category).count() for category in categories}
+
+def get_products_by_brand_data():
+    brands = Brand.objects.all()
+    return {brand.name: Product.objects.filter(brand=brand).count() for brand in brands}
