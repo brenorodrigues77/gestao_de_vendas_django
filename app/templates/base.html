@@ -72,7 +72,9 @@
     {% include 'components/header.html' %}
   </header>
   <div class="d-flex" style="min-height: 100vh; padding-top:64px;">
-    {% include 'components/sidebar.html' %}
+    {% if user.is_authenticated %}
+      {% include 'components/sidebar.html' %}
+    {% endif %}
     <div class="flex-grow-1 main-content" style="margin-left:220px;">
       <main class="container-fluid py-3" style="max-width: 1200px; margin: 0 auto;">
         {% block content %}
